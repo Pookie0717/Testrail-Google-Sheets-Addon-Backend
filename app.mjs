@@ -2,16 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
 import ngrok from 'ngrok';
-import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-
-const app = express();
-
-const router = new Router();
-
-app.use(router.routes());
-app.use(router.allowedMethods());
 
 const PORT = 3000;
+const app = express();
 
 app.use(cors());
 app.use(express.json());
@@ -44,9 +37,13 @@ app.get('/fetchData', async (req, res) => {
   }
 })
 
-export async function runServer(port) {
-  await app.listen({ port });
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+// export async function runServer(port) {
+//   await app.listen({ port });
+//   console.log(`Server is running on http://localhost:${port}`);
   // try {
   //   const url = await ngrok.connect({
   //     addr: PORT,
@@ -56,8 +53,4 @@ export async function runServer(port) {
   // } catch (err) {
   //   console.error('Error opening Ngrok tunnel:', err);
   // }
-}
-
-if (import.meta.main) {
-  runServer(3000);
-}
+// }
