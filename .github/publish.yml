@@ -25,5 +25,5 @@ jobs:
       - name: Set up Deno
         uses: denoland/setup-deno@v1
 
-      - name: Publish (dry run)
+      - name: Publish
         run: deno publish --allow-dirty
