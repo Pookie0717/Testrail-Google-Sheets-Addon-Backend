@@ -10,9 +10,5 @@
 1. Download and Install Docker Desktop:
 Download [Docker Desktop](https://www.docker.com/products/docker-desktop/) and follow the installation instructions for your operating system.
 
-2. Build and Run the Docker Image:
-    docker build -t testrail-google-sheets-addon .
-    docker run -p 3000:3000 testrail-google-sheets-addon
-
-If you need to run the application again, you only need to execute the docker run command.
+2. Run the Docker Image:
     docker run -p 3000:3000 testrail-google-sheets-addon
