@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/fetchData', async (req, res) => {
+app.get('/fetchData', async (req: any, res: any) => {
   try{
     const tarUrl = req.query.tarUrl;
     const username = req.query.username;

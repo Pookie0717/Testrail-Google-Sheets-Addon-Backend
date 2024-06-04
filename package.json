@@ -2,10 +2,10 @@
   "name": "google-sheets-addon-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.mjs",
+  "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "deno run --allow-env --allow-read --allow-net app.mjs"
+    "start": "deno run --allow-env --allow-read --allow-net app.ts"
   },
   "author": "railflow",
   "license": "ISC",
