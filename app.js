@@ -1,7 +1,7 @@
-import express from 'express';
-import cors from 'cors';
-import axios from 'axios';
-import ngrok from 'ngrok';
+const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
+const ngrok = require('ngrok');
 
 const PORT = 3000;
 const app = express();
@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/fetchData', async (req: any, res: any) => {
+app.get('/fetchData', async (req, res) => {
   try{
     const tarUrl = req.query.tarUrl;
     const username = req.query.username;

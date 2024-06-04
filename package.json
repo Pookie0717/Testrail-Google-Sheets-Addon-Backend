@@ -5,7 +5,8 @@
   "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "deno run --allow-env --allow-read --allow-net app.ts"
+    "start:deno": "deno run --allow-env --allow-read --allow-net app.ts",
+    "start": "node app.js"
   },
   "author": "railflow",
   "license": "ISC",
