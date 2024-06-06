@@ -26,11 +26,11 @@ app.get('/fetchData', async (req, res) => {
         password: apiKey
       }
     });
-    res.send(fetchData.data);
+    res.send(fetchData);
   } catch(error) {
     console.error('Error fetching data:', error.message);
     if (error.response) {
-      res.status(error.response.status).send(error.response.statusText);
+      res.status(error.response.status).send(error);
     } else {
       res.status(500).send('An error occurred while fetching data');
     }
