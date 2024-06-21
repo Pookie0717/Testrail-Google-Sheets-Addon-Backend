@@ -11,22 +11,18 @@ app.use(express.json());
 
 app.get('/fetchData', async (req, res) => {
   try{
+    console.log(req.query);
     const tarUrl = req.query.tarUrl;
-    const username = req.query.username;
-    const apiKey = req.query.password;
+    const token = req.query.options ? req.query.options.token : null;
+    // const username = req.query.username;
+    // const apiKey = req.query.password;
     if (!tarUrl) {
       return res.status(400).send('URL parameter is missing');
     }
-    if (!username || !apiKey) {
-      return res.status(400).send('Username or API key parameter is missing');
-    }
     const fetchData = await axios.get(tarUrl, {
-      auth: {
-        username: username,
-        password: apiKey
-      }
+
     });
-    res.send(fetchData);
+    res.send(fetchData.data);
   } catch(error) {
     console.error('Error fetching data:', error.message);
     if (error.response) {
@@ -34,6 +30,65 @@ app.get('/fetchData', async (req, res) => {
     } else {
       res.status(500).send('An error occurred while fetching data');
     }
+  }
+});
+
+app.get('/getData', async (req, res) => {
+  console.log(req.query)
+  try{
+    const url = req.query.tarUrl;
+    if (!url) {
+      return res.status(400).send('URL parameter is missing');
+    }
+    const fetchData = await axios.get(url, {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Basic ${req.query.token}`
+      }
+    });
+    res.json(fetchData.data);
+  } catch(error) {
+    console.error(error.message);
+  }
+})
+
+app.post('/postData', async(req, res) => {
+  try{
+    const url = req.query.tarUrl;
+    if (!url) {
+      return res.status(400).send('URL parameter is missing');
+    }
+    const token = req.query.options?.token;
+    if (!token) {
+      return res.status(400).json({ error: 'Missing token' });
+    }
+    const fetchData = await axios.post(url, {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Basic ${req.query.options?.token}`
+      },
+      data: req.body.payload
+    });
+    res.json(fetchData.data);
+  } catch {
+    console.error(error.message);
+  }
+})
+
+app.get('/checkAuth', async(req, res) => {
+  try{
+    const url = req.query.tarUrl;
+    if (!url) {
+      return res.status(400).send('URL parameter is missing');
+    }
+    const fetchData = await axios.get(url, {
+      headers: {
+        Accept: 'application/json',
+      }
+    });
+    res.json(fetchData.data);
+  } catch {
+    console.error(error.message)
   }
 })
 
